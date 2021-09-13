@@ -29,6 +29,5 @@ function obtenerSalarioAnualpromedio(salario) {
 
 function obtenerSalarioMensualPromedio(salario) {
   const salarioAnualPromedio = obtenerSalarioAnualpromedio(salario);
-  const salarioMensualPromedio = (salarioAnualPromedio / 12).toFixed(2);
-  return salarioMensualPromedio;
+  return (salarioAnualPromedio / 12).toFixed(2);
 }
