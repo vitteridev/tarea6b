@@ -1,36 +1,15 @@
-function ocultarBotonCalcular() {
-  document.querySelector("#calcular").className = "oculto";
+function ocultarElemento(elemento) {
+  elemento.className = "oculto";
 }
-function mostrarBotonCalcular() {
-  document.querySelector("#calcular").className = "";
-}
-function ocultarAnalisis() {
-  document.querySelector("#analisis").className = "oculto";
-}
-function mostrarAnalisis() {
-  document.querySelector("#analisis").className = "";
-}
-function ocultarBotonResetear() {
-  document.querySelector("#resetear").className = "oculto";
-}
-function mostrarBotonResetear() {
-  document.querySelector("#resetear").className = "";
+function mostrarElemento(elemento) {
+  elemento.className = "";
 }
 
 function resetear() {
-  ocultarAnalisis();
-  ocultarBotonResetear();
-}
-
-function ignorarInputsVacios() {
-  const salarios = obtenerSalarioIntegrantes();
-
-  for (let i = 0; i < salarios.length; i++) {
-    if (salarios[i] === 0) {
-      salarios.splice(i, 1);
-    }
-  }
-  return salarios;
+  const $analisis = document.querySelector("#analisis");
+  const $btnResetear = document.querySelector("#resetear");
+  ocultarElemento($analisis);
+  ocultarElemento($btnResetear);
 }
 
 function obtenerSalarioIntegrantes() {
@@ -38,7 +17,9 @@ function obtenerSalarioIntegrantes() {
   const salarios = [];
 
   for (let i = 0; i < $integrantes.length; i++) {
-    salarios.push(Number($integrantes[i].value));
+    if (Number($integrantes[i].value != 0)) {
+      salarios.push(Number($integrantes[i].value));
+    }
   }
   return salarios;
 }
@@ -69,20 +50,22 @@ function eliminarIntegrante() {
   $integrante.remove();
 }
 
-document.querySelector("#sumar-integrante").onclick = function (event) {
-  mostrarBotonCalcular();
+document.querySelector("#agregar-integrante").onclick = function (event) {
+  const $btnCalcular = document.querySelector("#calcular");
+  mostrarElemento($btnCalcular);
   crearIntegrante();
 
   event.preventDefault();
 };
 
-document.querySelector("#restar-integrante").onclick = function (event) {
-  const $integrantes = document.querySelectorAll(".integrante").length;
-  if ($integrantes > 0) {
+document.querySelector("#eliminar-integrante").onclick = function (event) {
+  const cantidadIntegrante = document.querySelectorAll(".integrante").length;
+  const $btnCalcular = document.querySelector("#calcular");
+  if (cantidadIntegrante > 0) {
     eliminarIntegrante();
   }
-  if ($integrantes == 1) {
-    ocultarBotonCalcular();
+  if (cantidadIntegrante == 1) {
+    ocultarElemento($btnCalcular);
   }
 
   event.preventDefault();
@@ -91,14 +74,17 @@ document.querySelector("#restar-integrante").onclick = function (event) {
 document.querySelector("#resetear").onclick = resetear;
 
 document.querySelector("#calcular").onclick = function (event) {
-  const salarios = ignorarInputsVacios();
+  const salarios = obtenerSalarioIntegrantes();
+  const $btnResetear = document.querySelector("#resetear");
+  const $analisis = document.querySelector("#analisis");
+
   mostrarSalario("mayor", obtenerMayorSalarioAnual(salarios));
   mostrarSalario("menor", obtenerMenorSalarioAnual(salarios));
   mostrarSalario("anual", obtenerSalarioAnualpromedio(salarios));
   mostrarSalario("mensual", obtenerSalarioMensualPromedio(salarios));
 
-  mostrarAnalisis();
-  mostrarBotonResetear();
+  mostrarElemento($analisis);
+  mostrarElemento($btnResetear);
 
   event.preventDefault();
 };
