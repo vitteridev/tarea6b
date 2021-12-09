@@ -1,0 +1,11 @@
+{
+  "name": "tarea6",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:vitteridev/tarea6b.git",
+  "author": "Junior Vitteri <vitteridev@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "bootstrap": "^5.1.3"
+  }
+}
