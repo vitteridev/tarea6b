@@ -4,23 +4,52 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="node_modules/bootstrap/dist/css/bootstrap.min.css"
+    />
     <link rel="stylesheet" href="./tarea6.css" />
     <title>tarea 6</title>
   </head>
   <body>
-    <form id="calcular-salarios">
-      <button id="agregar-integrante">+</button>
-      <button id="eliminar-integrante">-</button>
-      <div class="integrantes"></div>
-      <button id="calcular" class="oculto">calcular</button>
-      <div id="analisis" class="oculto">
-        <p>El mayor salario anual es : <strong id="mayor"></strong></p>
-        <p>El menor salario anual es : <strong id="menor"></strong></p>
-        <p>El salario anual promedio es : <strong id="anual"></strong></p>
-        <p>El salario mensual promedio es : <strong id="mensual"></strong></p>
-      </div>
-      <button type="reset" id="resetear" class="oculto">resetear</button>
-    </form>
+    <div class="container vh-100 d-flex flex-column justify-content-center">
+      <header>
+        <h1>agregue o elimine integrantes</h1>
+      </header>
+      <main>
+        <form id="calcular-salarios">
+          <button type="button" class="btn btn-primary" id="agregar-integrante">
+            +
+          </button>
+          <button
+            type="button"
+            class="btn btn-primary"
+            id="eliminar-integrante"
+          >
+            -
+          </button>
+          <div class="integrantes"></div>
+          <button
+            type="button"
+            class="btn btn-primary oculto mb-3"
+            id="calcular"
+          >
+            calcular
+          </button>
+          <div id="analisis" class="alert alert-info oculto">
+            <p>El mayor salario anual es : <strong id="mayor"></strong></p>
+            <p>El menor salario anual es : <strong id="menor"></strong></p>
+            <p>El salario anual promedio es : <strong id="anual"></strong></p>
+            <p>
+              El salario mensual promedio es : <strong id="mensual"></strong>
+            </p>
+          </div>
+          <button type="reset" id="resetear" class="btn btn-danger oculto">
+            resetear
+          </button>
+        </form>
+      </main>
+    </div>
     <script type="text/javascript" src="./calculos.js"></script>
     <script type="text/javascript" src="./tarea6.js"></script>
   </body>
